@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <name>note-book</name>
+    <description>springboot 多模块构建</description>
+
+    <groupId>com.example</groupId>
+    <artifactId>note-book</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.0.3.RELEASE</version>
+    </parent>
+
+    <modules>
+        <module>note-book-web</module>
+        <module>note-book-service</module>
+        <module>note-book-repository</module>
+        <module>note-book-model</module>
+        <module>note-book-common</module>
+    </modules>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+        <notebook.version>1.0.0-SNAPSHOT</notebook.version>
+        <build.plugins.plugin.version>2.0.3.RELEASE</build.plugins.plugin.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.example</groupId>
+                <artifactId>note-book-web</artifactId>
+                <version>${notebook.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.example</groupId>
+                <artifactId>note-book-service</artifactId>
+                <version>${notebook.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.example</groupId>
+                <artifactId>note-book-repository</artifactId>
+                <version>${notebook.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.example</groupId>
+                <artifactId>note-book-common</artifactId>
+                <version>${notebook.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.example</groupId>
+                <artifactId>note-book-common</artifactId>
+                <version>${notebook.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+</project>
