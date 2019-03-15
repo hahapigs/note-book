@@ -24,4 +24,5 @@ hs_err_pid*
 
 /.idae/*.xml
 /target
+.gitignore
 .DS_Store
