@@ -1,5 +1,6 @@
 package com.example.notebook.config;
 
+import com.example.notebook.filter.ErrorFilter;
 import com.example.notebook.filter.MyFilter;
 import com.example.notebook.intercept.LoginInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,9 @@ import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.*;
+
+import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  * @author zhaohongliang
@@ -76,17 +80,36 @@ public class WebMvcConfig {
         };
     }
 
+
     /**
-     * 过滤器
+     * MyFilter 过滤器
      * @return
      */
-    // @Bean
-    public FilterRegistrationBean<MyFilter> filter() {
+    @Bean
+    public FilterRegistrationBean<MyFilter> myFilter() {
         FilterRegistrationBean registrationBean = new FilterRegistrationBean();
         registrationBean.setFilter(new MyFilter());
         registrationBean.setName("MyFilter");
-        registrationBean.addUrlPatterns("/*");
+        Collection collection = new ArrayList<>();
+        collection.add("/*");
+        collection.add("/test/*");
+        registrationBean.setUrlPatterns(collection);
+        registrationBean.addInitParameter("charSet", "UTF-8");
         registrationBean.setOrder(1);
+        return registrationBean;
+    }
+
+    /**
+     * ErrorFilter 过滤器
+     * @return
+     */
+    @Bean
+    public FilterRegistrationBean<ErrorFilter> errorFilter() {
+        FilterRegistrationBean registrationBean = new FilterRegistrationBean();
+        registrationBean.setFilter(new ErrorFilter());
+        registrationBean.setName("ErrorFilter");
+        registrationBean.addUrlPatterns("/error/*");
+        registrationBean.setOrder(2);
         return registrationBean;
     }
 }

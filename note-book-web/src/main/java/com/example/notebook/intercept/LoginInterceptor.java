@@ -38,9 +38,19 @@ public class LoginInterceptor implements HandlerInterceptor {
      */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        logger.info("请求路径：{}", request.getRequestURI());
-        logger.info("请求Contex-Path：{}", request.getContextPath());
-        logger.info("ServletPath：{}", request.getServletPath());
+        String requestURI = request.getRequestURI();
+        String contextPath = request.getContextPath();
+        String servletPath = request.getServletPath();
+        logger.info("请求路径：{}", requestURI);
+        logger.info("请求Contex-Path：{}", contextPath);
+        logger.info("ServletPath：{}", servletPath);
+
+        if(servletPath.equals("/error")) {
+            // response.sendRedirect("/notebook");
+            response.sendError(404, "您访问的页面不存在！");
+            return false;
+        }
+
         Object userName = request.getSession().getAttribute("userName");
 //        if (null != userName) {
 //            return true;
