@@ -38,6 +38,7 @@ public class LoginInterceptor implements HandlerInterceptor {
      */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        logger.info("preHandle:请求前调用");
         String requestURI = request.getRequestURI();
         String contextPath = request.getContextPath();
         String servletPath = request.getServletPath();
@@ -45,9 +46,11 @@ public class LoginInterceptor implements HandlerInterceptor {
         logger.info("请求Contex-Path：{}", contextPath);
         logger.info("ServletPath：{}", servletPath);
 
+        // 请求地址在项目中找不到对应的requestMapping则ServletPath为/error
         if(servletPath.equals("/error")) {
-            // response.sendRedirect("/notebook");
-            response.sendError(404, "您访问的页面不存在！");
+            // response.sendError(404, "您访问的页面不存在！");
+            response.sendRedirect("/notebook");
+            // 返回false则请求中断
             return false;
         }
 
@@ -72,7 +75,7 @@ public class LoginInterceptor implements HandlerInterceptor {
     public void postHandle(
             HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView)
             throws Exception {
-
+        logger.info("postHandle:请求后调用!");
     }
 
     /**
@@ -87,6 +90,7 @@ public class LoginInterceptor implements HandlerInterceptor {
     public void afterCompletion(
             HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
             throws Exception {
+        logger.info("afterCompletion:请求调用完成后回调方法，即在视图渲染完成后回调!");
 
     }
 

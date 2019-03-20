@@ -23,7 +23,7 @@ public class ErrorFilter implements Filter {
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-        logger.info("Error过滤器被创建!");
+        logger.info("Error过滤器创建!");
     }
 
     @Override
@@ -33,12 +33,13 @@ public class ErrorFilter implements Filter {
         if (requestURI.contains("error")) {
             servletRequest.getRequestDispatcher("/error/page_500").forward(servletRequest, servletResponse);
         } else {
+            // 链路，直接传递给下一个过滤器
             filterChain.doFilter(servletRequest, servletResponse);
         }
     }
 
     @Override
     public void destroy() {
-        logger.info("Error过滤器被销毁!");
+        logger.info("Error过滤器销毁!");
     }
 }

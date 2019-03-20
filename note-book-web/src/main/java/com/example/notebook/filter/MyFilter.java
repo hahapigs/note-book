@@ -3,12 +3,8 @@ package com.example.notebook.filter;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.core.annotation.Order;
-import org.springframework.stereotype.Component;
 
 import javax.servlet.*;
-import javax.servlet.annotation.WebFilter;
-import javax.servlet.annotation.WebInitParam;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
@@ -44,19 +40,20 @@ public class MyFilter implements Filter {
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-        logger.info("MyFilter过滤器被创建!");
+        logger.info("MyFilter过滤器创建!");
     }
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) servletRequest;
         String requestURI = req.getRequestURI();
-        logger.info("过滤器请求地址：" + requestURI);
+        logger.info("过滤器请求地址:" + requestURI);
+        // 链路，直接传递给下一个过滤器
         filterChain.doFilter(servletRequest, servletResponse);
     }
 
     @Override
     public void destroy() {
-        logger.info("MyFilter过滤器被销毁!");
+        logger.info("MyFilter过滤器销毁!");
     }
 }

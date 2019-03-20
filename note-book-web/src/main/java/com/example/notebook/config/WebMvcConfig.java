@@ -3,8 +3,10 @@ package com.example.notebook.config;
 import com.example.notebook.filter.ErrorFilter;
 import com.example.notebook.filter.MyFilter;
 import com.example.notebook.intercept.LoginInterceptor;
+import com.example.notebook.listener.MyListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.boot.web.servlet.ServletListenerRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.*;
@@ -87,7 +89,7 @@ public class WebMvcConfig {
      */
     @Bean
     public FilterRegistrationBean<MyFilter> myFilter() {
-        FilterRegistrationBean registrationBean = new FilterRegistrationBean();
+        FilterRegistrationBean<MyFilter> registrationBean = new FilterRegistrationBean<MyFilter>();
         registrationBean.setFilter(new MyFilter());
         registrationBean.setName("MyFilter");
         Collection collection = new ArrayList<>();
@@ -105,11 +107,23 @@ public class WebMvcConfig {
      */
     @Bean
     public FilterRegistrationBean<ErrorFilter> errorFilter() {
-        FilterRegistrationBean registrationBean = new FilterRegistrationBean();
+        FilterRegistrationBean<ErrorFilter> registrationBean = new FilterRegistrationBean<ErrorFilter>();
         registrationBean.setFilter(new ErrorFilter());
         registrationBean.setName("ErrorFilter");
         registrationBean.addUrlPatterns("/error/*");
         registrationBean.setOrder(2);
+        return registrationBean;
+    }
+
+    /**
+     * MyListener 监听器
+     * @return
+     */
+    @Bean
+    public ServletListenerRegistrationBean<MyListener> myListener() {
+        ServletListenerRegistrationBean<MyListener> registrationBean = new ServletListenerRegistrationBean<MyListener>();
+        registrationBean.setListener(new MyListener());
+        registrationBean.setOrder(1);
         return registrationBean;
     }
 }
