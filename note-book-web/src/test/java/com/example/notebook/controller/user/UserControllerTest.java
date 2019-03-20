@@ -2,6 +2,7 @@ package com.example.notebook.controller.user;
 
 import com.example.notebook.user.model.User;
 import com.example.notebook.user.service.IUserService;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -15,12 +16,8 @@ import javax.annotation.Resource;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
+@Slf4j
 public class UserControllerTest {
-
-    /**
-     * 日志
-     */
-    private static Logger logger = LoggerFactory.getLogger(UserControllerTest.class);
 
     @Resource
     private IUserService userService;
@@ -28,7 +25,7 @@ public class UserControllerTest {
     @Test
     public void findByName() {
         String str = userService.findByName("赵钱孙");
-        logger.info(str);
+        log.info(str);
     }
 
     @Test
@@ -39,6 +36,6 @@ public class UserControllerTest {
         user.setAge(28);
         user.setAddress("北京市朝阳区");
         user = userService.save(user);
-        logger.info(user.toString());
+        log.info(user.toString());
     }
 }

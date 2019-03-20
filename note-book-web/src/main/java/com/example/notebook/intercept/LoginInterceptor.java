@@ -1,5 +1,6 @@
 package com.example.notebook.intercept;
 
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -21,12 +22,8 @@ import javax.servlet.http.HttpServletResponse;
  * @date 19:15 2018/7/2
  */
 @Component
+@Slf4j
 public class LoginInterceptor implements HandlerInterceptor {
-
-    /**
-     * logger instance
-     */
-    public static Logger logger = LoggerFactory.getLogger(LoginInterceptor.class);
 
     /**
      * 预处理回调方法，实现处理器的预处理（如检查登陆），第三个参数为响应的处理器，自定义Controller
@@ -38,13 +35,13 @@ public class LoginInterceptor implements HandlerInterceptor {
      */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        logger.info("preHandle:请求前调用");
+        log.info("preHandle:请求前调用");
         String requestURI = request.getRequestURI();
         String contextPath = request.getContextPath();
         String servletPath = request.getServletPath();
-        logger.info("请求路径：{}", requestURI);
-        logger.info("请求Contex-Path：{}", contextPath);
-        logger.info("ServletPath：{}", servletPath);
+        log.info("请求路径：{}", requestURI);
+        log.info("请求Contex-Path：{}", contextPath);
+        log.info("ServletPath：{}", servletPath);
 
         // 请求地址在项目中找不到对应的requestMapping则ServletPath为/error
         if(servletPath.equals("/error")) {
@@ -75,7 +72,7 @@ public class LoginInterceptor implements HandlerInterceptor {
     public void postHandle(
             HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView)
             throws Exception {
-        logger.info("postHandle:请求后调用!");
+        log.info("postHandle:请求后调用!");
     }
 
     /**
@@ -90,7 +87,7 @@ public class LoginInterceptor implements HandlerInterceptor {
     public void afterCompletion(
             HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
             throws Exception {
-        logger.info("afterCompletion:请求调用完成后回调方法，即在视图渲染完成后回调!");
+        log.info("afterCompletion:请求调用完成后回调方法，即在视图渲染完成后回调!");
 
     }
 

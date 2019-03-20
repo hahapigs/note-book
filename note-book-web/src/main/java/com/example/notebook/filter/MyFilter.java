@@ -1,6 +1,7 @@
 package com.example.notebook.filter;
 
 
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -31,29 +32,25 @@ import java.io.IOException;
 //        }
 //)
 //@Order(1)  // 指定过滤器的执行顺序,值越大越靠后执行
+@Slf4j
 public class MyFilter implements Filter {
-
-    /**
-     * 日志
-     */
-    private static Logger logger = LoggerFactory.getLogger(MyFilter.class);
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-        logger.info("MyFilter过滤器创建!");
+        log.info("MyFilter过滤器创建!");
     }
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) servletRequest;
         String requestURI = req.getRequestURI();
-        logger.info("过滤器请求地址:" + requestURI);
+        log.info("过滤器请求地址:" + requestURI);
         // 链路，直接传递给下一个过滤器
         filterChain.doFilter(servletRequest, servletResponse);
     }
 
     @Override
     public void destroy() {
-        logger.info("MyFilter过滤器销毁!");
+        log.info("MyFilter过滤器销毁!");
     }
 }

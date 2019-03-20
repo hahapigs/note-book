@@ -6,6 +6,7 @@ package com.example.notebook.controller.flowable;
 //import org.flowable.engine.runtime.ProcessInstance;
 //import org.flowable.image.ProcessDiagramGenerator;
 //import org.flowable.task.api.Task;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +26,7 @@ import java.util.List;
  */
 @Controller
 @RequestMapping(value = "expense")
+@Slf4j
 public class FlowableController {
 
 //    @Autowired

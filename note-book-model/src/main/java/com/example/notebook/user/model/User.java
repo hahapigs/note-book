@@ -1,12 +1,25 @@
 package com.example.notebook.user.model;
 
 
+import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
+/**
+ * user
+ * @author zhaohongliang
+ * @description
+ * @date 17:34:00 2019-03-20
+ */
 @Entity
+@Setter
+@Getter
+@NoArgsConstructor
+@RequiredArgsConstructor
+@AllArgsConstructor
+@ToString
 @Table(name = "t_user")
 public class User implements Serializable {
 
@@ -43,45 +56,4 @@ public class User implements Serializable {
     @Column(name = "address", length = 255)
     private String address;     // 家庭住址
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", age=" + age +
-                ", address='" + address + '\'' +
-                '}';
-    }
 }
