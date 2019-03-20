@@ -70,6 +70,7 @@ public class WebMvcConfig {
 
             /**
              * 静态资源处理器
+             * 手动配置其搜索静态资源文件的文件夹位置
              * 注意：
              * 如果在application配置文件中配置了 spring.mvc.static-path-pattern 和 spring.resources.static-locations 属性，此初可不添加自定义配置
              *
@@ -77,7 +78,11 @@ public class WebMvcConfig {
              */
             @Override
             public void addResourceHandlers(ResourceHandlerRegistry registry) {
+                // 当前项目下的资源路径，addResourceLocations("classpath:/xx/")
                 // registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
+                // 注:如果是Linux的话，直接指定文件夹路径即可，不需要指定哪个盘(Linux就一个可用盘)
+                // registry.addResourceHandler("/static/**").addResourceLocations("file:D:/static/");
+
             }
         };
     }
