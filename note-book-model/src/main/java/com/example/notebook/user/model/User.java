@@ -14,12 +14,7 @@ import java.io.Serializable;
  * @date 17:34:00 2019-03-20
  */
 @Entity
-@Setter
-@Getter
-@NoArgsConstructor
-@RequiredArgsConstructor
-@AllArgsConstructor
-@ToString
+@Data
 @Table(name = "t_user")
 public class User implements Serializable {
 

@@ -103,9 +103,25 @@
             </plugin>
         </plugins>
         <resources>
+
+            <!-- 修复filtering标签过滤二进制文件导致浏览器出现 OTS parsing error: Failed to convert WOFF 2.0的异常-->
             <resource>
                 <directory>src/main/resources</directory>
                 <filtering>true</filtering>
+                <excludes>
+                    <exclude>
+                        static/**
+                    </exclude>
+                </excludes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>false</filtering>
+                <includes>
+                    <include>
+                        static/**
+                    </include>
+                </includes>
             </resource>
         </resources>
     </build>
