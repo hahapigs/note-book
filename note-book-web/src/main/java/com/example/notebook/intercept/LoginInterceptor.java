@@ -43,6 +43,7 @@ public class LoginInterceptor implements HandlerInterceptor {
         log.info("请求Contex-Path：{}", contextPath);
         log.info("ServletPath：{}", servletPath);
 
+        /*
         // 请求地址在项目中找不到对应的requestMapping则ServletPath为/error
         if(servletPath.equals("/error")) {
             // response.sendError(404, "您访问的页面不存在！");
@@ -50,6 +51,7 @@ public class LoginInterceptor implements HandlerInterceptor {
             // 返回false则请求中断
             return false;
         }
+        */
 
         Object userName = request.getSession().getAttribute("userName");
 //        if (null != userName) {

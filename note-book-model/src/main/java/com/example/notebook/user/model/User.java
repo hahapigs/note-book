@@ -1,10 +1,12 @@
 package com.example.notebook.user.model;
 
 
+import com.example.notebook.annotation.MyValid;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
@@ -37,6 +39,7 @@ public class User implements Serializable {
      * 姓名
      */
     @Column(name = "name", nullable = false, length = 20)
+    @NotNull()
     private String name;        // 姓名
 
     /**
