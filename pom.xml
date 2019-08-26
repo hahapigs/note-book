@@ -54,7 +54,7 @@
             </dependency>
             <dependency>
                 <groupId>com.example</groupId>
-                <artifactId>note-book-common</artifactId>
+                <artifactId>note-book-model</artifactId>
                 <version>${notebook.version}</version>
             </dependency>
             <dependency>
