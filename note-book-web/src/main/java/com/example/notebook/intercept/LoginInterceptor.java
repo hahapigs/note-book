@@ -15,8 +15,8 @@ import javax.servlet.http.HttpServletResponse;
  * @author zhaohongliang
  * @description
  *      HandlerInterceptor 接口定义的是默认方法，这是jdk1.8的新特性，
- *      1.8以前推荐使用继承 HandlerInterceptorAdapter 抽象类 ，
- *      1.8以后推荐使用实现 HandlerInterceptor 接口
+ *      JDK1.8,Spring5.0 以前推荐使用继承 HandlerInterceptorAdapter 抽象类 ，
+ *      JDK1.8,Spring5.0 以后推荐使用实现 HandlerInterceptor 接口
  *      HandlerInterceptor 只需要重写需要实现的方法就可以了，
  *      相比之前重写 HandlerInterceptor 或继承 HandlerInterceptorAdapter 类有更好的效果。
  * @date 19:15 2018/7/2

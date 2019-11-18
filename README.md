@@ -13,4 +13,5 @@ notebook项目代码简洁、注释丰富、上手容易，适合刚刚接触Spr
 * **Spring MVC**：
 * **Spring Data JPA**：
 * **Thymeleaf**：
+* **Lombok**
 
