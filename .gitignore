@@ -27,5 +27,5 @@ hs_err_pid*
 /target
 target
 classes
-#.gitignore
+.gitignore
 .DS_Store
