@@ -1,0 +1,21 @@
+
+server:
+  port: 8080
+
+spring:
+  devtools:
+    restart:
+      enabled: true   # 热部署
+      exclude: static/**,public/**  # 热部署重新启动过滤资源
+  # 数据源
+  datasource:
+    primary:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbc-url: jdbc:mysql://localhost:3306/notebook?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=UTC&nullCatalogMeansCurrent=true&allowPublicKeyRetrieval=true
+      username: root
+      password: Mysql%^&890_mysql
+    secondary:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbc-url: jdbc:mysql://localhost:3306/notebook_test?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=UTC&nullCatalogMeansCurrent=true&allowPublicKeyRetrieval=true
+      username: root
+      password: Mysql%^&890_mysql

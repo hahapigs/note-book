@@ -1,9 +1,0 @@
-{
-  "properties": [
-    {
-      "name": "blog.address",
-      "type": "java.lang.String",
-      "description": "博客地址"
-    }
-  ]
-}

@@ -1,7 +1,62 @@
 {
   "properties": [
     {
-      "name": "blog.address",
+      "name": "spring.datasource.primary.driver-class-name",
+      "type": "java.lang.String",
+      "description": "primary数据源驱动名称"
+    },
+    {
+      "name": "spring.datasource.primary.jdbc-url",
+      "type": "java.lang.String",
+      "description": "primary数据源链接URL"
+    },
+    {
+      "name": "spring.datasource.primary.username",
+      "type": "java.lang.String",
+      "description": "primary数据源用户名"
+    },
+    {
+      "name": "spring.datasource.primary.password",
+      "type": "java.lang.String",
+      "description": "primary数据源密码"
+    },
+    {
+      "name": "spring.datasource.secondary.driver-class-name",
+      "type": "java.lang.String",
+      "description": "secondary数据源驱动名称"
+    },
+    {
+      "name": "spring.datasource.secondary.jdbc-url",
+      "type": "java.lang.String",
+      "description": "secondary数据源链接URL"
+    },
+    {
+      "name": "spring.datasource.secondary.username",
+      "type": "java.lang.String",
+      "description": "secondary数据源用户名"
+    },
+    {
+      "name": "spring.datasource.secondary.password",
+      "type": "java.lang.String",
+      "description": "secondary数据源密码"
+    },
+    {
+      "name": "auth.name",
+      "type": "java.lang.String",
+      "description": "姓名"
+    },
+    {
+      "name": "auth.email",
+      "type": "java.lang.String",
+      "description": "邮件地址"
+    },
+    {
+      "name": "auth.github",
+      "type": "java.lang.String",
+      "description": "GitHub地址"
+    },
+    {
+      "name": "auth.blog",
       "type": "java.lang.String",
       "description": "博客地址"
     }

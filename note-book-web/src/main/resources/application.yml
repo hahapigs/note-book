@@ -1,0 +1,85 @@
+
+server:
+  tomcat:
+    uri-encoding: utf-8
+  servlet:
+    path: /    # Path of the main dispatcher servlet
+    context-path: /notebook   # Context path of the application. 应用上下文路径
+
+spring:
+  profiles:
+    active: local
+  mvc:
+    static-path-pattern: /static/**   # 默认值为 /**
+    throw-exception-if-no-handler-found: true   # 出现错误时, 直接抛出异常
+  resources:
+    add-mappings: false # 不要为我们工程中的资源文件建立映射
+    # 默认值为 classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/  优先级 从左至右 依次降低
+    # 注:如果是Windows的话，直接指定文件所在目录(file:D:/static/); 如果是Linux的话，直接指定文件夹路径即可，不需要指定哪个盘(Linux就一个可用盘)
+    static-locations: classpath:/templates/,classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/
+  http:
+    encoding:
+      charset: utf-8  # HTTP encoding (HttpEncodingProperties)
+      enabled: true
+  jpa:
+    database: mysql
+    # Name of the target database to operate on, auto-detected by default. Can be alternatively set using.
+    # 创建表结构的引擎，默认为 engine=MyISAM
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    show-sql: true
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update  # jpa可以直接根据entity创建表
+  data:
+    jpa:
+      repositories:
+        enabled: true
+  output:
+    ansi:
+      # 日志多彩色输出 never:禁用ANSI-colored输出（默认项） detect:会检查终端是否支持ANSI，是的话就采用彩色输出（推荐项)
+      # ALWAYS：总是使用ANSI-colored格式输出，若终端不支持的时候，会有很多干扰信息，不推荐使用
+      enabled: detect
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: UTC
+
+  thymeleaf:
+    cache: false   # 开启模板缓存（默认值：true）
+    check-template: true # 检查模版是否存在（默认值：true）
+    check-template-location: true  # 检查模板位置是否正确（默认值:true)
+    enabled: true # 开启MVC Thymeleaf视图解析（默认值：true）
+    encoding: UTF-8 # 模版编码
+    excluded-view-names:  # 要被排除在解析之外的视图名称列表，用逗号分隔
+    mode: HTML5  # 要运用于模板之上的模板模式。另见StandardTemplate-ModeHandlers(默认值：HTML5)
+    prefix: classpath:/templates/ #在构建URL时添加到视图名称前的前缀（默认值：classpath:/templates/）
+    servlet:
+      content-type: text/html #Content-Type的值（默认值：text/html）
+    suffix: .html # 在构建URL时添加到视图名称后的后缀（默认值：.html）
+
+# 日志
+logging:
+  # path: ./logs/notebook.log   # logging.path 和 logging.file 同时存在时，file会生效，配置其中任一即可
+  file: ./logs/notebook.log
+    # max-history: 0
+    # max-size: 10MB
+  level:
+    root: WARN
+    com:
+      example:
+        notebook: debug
+    org:
+      springframework:
+        web: debug
+      hibernate:
+        sql: debug
+        type:
+
+          descriptor: trace
+auth:
+  name: zhaohongliang
+  email: 15711385916@163.com
+  github:
+  blog:
+
+
+
