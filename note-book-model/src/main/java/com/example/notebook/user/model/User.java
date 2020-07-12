@@ -4,8 +4,10 @@ package com.example.notebook.user.model;
 import com.example.notebook.annotation.MyValid;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
@@ -39,7 +41,7 @@ public class User implements Serializable {
      * 姓名
      */
     @Column(name = "name", nullable = false, length = 20)
-    @NotNull()
+    @NotNull(message = "name不可以为空")
     private String name;        // 姓名
 
     /**
@@ -51,6 +53,7 @@ public class User implements Serializable {
     /**
      * 家庭住址
      */
+    @Length(max = 25, message = "地址长度不能超过25")
     @Column(name = "address", length = 255)
     private String address;     // 家庭住址
 

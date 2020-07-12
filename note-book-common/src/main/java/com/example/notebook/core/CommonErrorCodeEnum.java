@@ -18,23 +18,28 @@
  * limitations under the License.
  */
 
-package com.example.notebook.exception;
+package com.example.notebook.core;
 
-import com.example.notebook.core.BaseError;
-
-import static com.example.notebook.core.CommonErrorCodeEnum.USER_NOT_FOUND;
-
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 /**
- * CommonException
+ * CommonErrorCodeEnum
  *
- * <p>自定义 通用类型</p>
+ * <p>系统异常枚举类型</p>
  *
  * @author: zhaohongliang
- * @date: 2019-12-02 13:24
+ * @date: 2020-07-12 17:51
  * @version: 1.0.0
  */
-public class CommonException extends RuntimeException {
+@Getter
+public enum CommonErrorCodeEnum implements BaseError {
+
+    /**
+     * 用户不存在
+     */
+    USER_NOT_FOUND(1001, "用户不存在");
 
     /**
      * 错误代码
@@ -46,36 +51,24 @@ public class CommonException extends RuntimeException {
      */
     private String msg;
 
-    public CommonException() {
-        super(USER_NOT_FOUND.getMsg());
-        this.code = USER_NOT_FOUND.getCode();
-        this.msg= USER_NOT_FOUND.getMsg();
-    }
-
-    public CommonException(Integer code, String msg) {
-        super(msg);
+    CommonErrorCodeEnum(Integer code, String msg) {
         this.code = code;
         this.msg = msg;
     }
 
-    public CommonException(BaseError baseError) {
-        super(baseError.getMsg());
-        this.code = baseError.getCode();
-        this.msg = baseError.getMsg();
-    }
-
-    public CommonException(BaseError baseError, String msg) {
-        super(msg);
-        baseError.setMsg(msg);
-        this.code = baseError.getCode();
-        this.msg = baseError.getMsg();
-    }
-
+    @Override
     public Integer getCode() {
-        return code;
+        return this.code;
     }
 
+    @Override
     public String getMsg() {
-        return msg;
+        return this.msg;
+    }
+
+    @Override
+    public BaseError setMsg(String msg) {
+        this.msg = msg;
+        return this;
     }
 }

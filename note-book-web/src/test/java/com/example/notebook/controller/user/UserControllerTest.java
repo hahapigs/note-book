@@ -13,7 +13,18 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 
-
+/**
+ * @runWith注解作用：
+ * --@RunWith就是一个运行器
+ * --@RunWith(JUnit4.class)就是指用JUnit4来运行
+ * --@RunWith(SpringRunner.class) 让测试运行于Spring测试环境，以便在测试开始的时候自动创建Spring的应用上下文
+ * --@RunWith(SpringJUnit4ClassRunner.class)，让测试运行于Spring测试环境，以便在测试开始的时候自动创建Spring的应用上下文
+ * SpringRunner is an alias for the SpringJUnit4ClassRunner.
+ * To use this class, simply annotate a JUnit 4 based test class with @RunWith(SpringRunner.class).
+ * SpringRunner 继承了SpringJUnit4ClassRunner，没有扩展任何功能；使用前者，名字简短而已.
+ * --@RunWith(Suite.class)的话就是一套测试集合
+ *
+ */
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @Slf4j

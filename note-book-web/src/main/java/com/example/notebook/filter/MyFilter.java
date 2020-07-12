@@ -22,6 +22,9 @@ import java.io.IOException;
  * 3、@WebFilter和@Component注解共同使用（注意：urlPatterns属性value首字母要小写，避免发生urlPatterns路径失效而过滤所有地址）
  * 但是本身@WebFilter和@Component共同使用就是有点不正确的，@Component本身是要把当前类当spring的组件来处理的，它初始化的过程和@WebFilter的初始化过程冲突
  *
+ * 说明：
+ * @WebFilter是Servlet3.0新增的注解，原先实现过滤器，需要在web.xml中进行配置，而现在通过此注解，启动启动时会自动扫描自动注册
+ *
  */
 //@Component
 //@WebFilter(filterName = "myFilter",                 // Filter名称
@@ -31,7 +34,8 @@ import java.io.IOException;
 //                @WebInitParam(name = "charSet", value = "utf-8")
 //        }
 //)
-//@Order(1)  // 指定过滤器的执行顺序,值越大越靠后执行
+//@Order(1)  // 指定过滤器的执行顺序,值越大越靠后执行  原本使用web.xml配置过滤器时，是可以指定顺序的，使用@WebFilter,需要使用@Order指定
+// 通过过滤器的java类名称，进行顺序的约定，比如LogFilter和AuthFilter，此时AuthFilter就会比LogFilter先执行，因为首字母A比L前面。
 @Slf4j
 public class MyFilter implements Filter {
 
@@ -45,6 +49,9 @@ public class MyFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) servletRequest;
         String requestURI = req.getRequestURI();
         log.info("过滤器请求地址:" + requestURI);
+        // 比如设置请求编码
+        // request.setCharacterEncoding("UTF-8");
+        // response.setCharacterEncoding("UTF-8");
         // 链路，直接传递给下一个过滤器
         filterChain.doFilter(servletRequest, servletResponse);
     }

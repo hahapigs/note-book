@@ -41,6 +41,7 @@ public class WebMvcConfig {
 
             /**
              * 跨域请求处理器
+             *
              * @param registry
              */
             @Override
@@ -50,6 +51,7 @@ public class WebMvcConfig {
 
             /**
              * 便捷式视图控制器
+             *
              * @param registry
              */
             @Override
@@ -60,16 +62,19 @@ public class WebMvcConfig {
 
             /**
              * 拦截器
+             *
              * @param registry
              */
             @Override
             public void addInterceptors(InterceptorRegistry registry) {
+                // 多个拦截器时 以此添加 执行顺序按添加顺序
                 // 登录拦截所有地址，但不包括（"/", "/static/**"）
                 registry.addInterceptor(loginInterceptor).addPathPatterns("/**").excludePathPatterns("/", "/static/**");
             }
 
             /**
              * 静态资源处理器
+             *
              * 手动配置其搜索静态资源文件的文件夹位置
              * 注意：
              * 如果在application配置文件中配置了 spring.mvc.static-path-pattern 和 spring.resources.static-locations 属性，此初可不添加自定义配置
@@ -90,11 +95,23 @@ public class WebMvcConfig {
 
     /**
      * MyFilter 过滤器
+     *
+     * FilterRegistrationBean是springboot提供的，此类提供setOrder方法，可以为filter设置排序值，让spring在注册web filter之前排序后再依次注册。
+     * 注册多个时不通的过滤器，就注册多个FilterRegistrationBean即可
+     *
      * @return
      */
     @Bean
     public FilterRegistrationBean<MyFilter> myFilter() {
         FilterRegistrationBean<MyFilter> registrationBean = new FilterRegistrationBean<MyFilter>();
+        // 当过滤器有注入其他bean类时，可直接通过@bean的方式进行实体类过滤器，这样不可自动注入过滤器使用的其他bean类。
+        // 当然，若无其他bean需要获取时，可直接new MyFilter()，也可使用getBean的方式: registrationBean.setFilter(new MyFilter());
+        /*
+        @Bean
+        public Filter myfilter() {
+            return new MyFilter();
+        }
+        */
         registrationBean.setFilter(new MyFilter());
         registrationBean.setName("MyFilter");
         Collection collection = new ArrayList<>();
@@ -122,6 +139,7 @@ public class WebMvcConfig {
 
     /**
      * MyListener 监听器
+     *
      * @return
      */
     @Bean

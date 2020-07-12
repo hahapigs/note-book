@@ -17,11 +17,13 @@ public class ConstantValidatorHandler implements ConstraintValidator<MyValid, St
 
     @Override
     public void initialize(MyValid myValid) {
+        //  获取设置的字段值
         this.content = myValid.value();
     }
 
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
+        // 判断参数是否等于设置的字段值，返回结果
         return content.equals(value);
     }
 }

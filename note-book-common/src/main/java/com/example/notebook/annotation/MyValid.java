@@ -6,6 +6,10 @@ import javax.validation.Constraint;
 import javax.validation.Payload;
 import java.lang.annotation.*;
 
+/**
+ * 自定义校验注解
+ *
+ */
 @Documented
 // 指定注解的处理类
 @Constraint(validatedBy = {ConstantValidatorHandler.class})

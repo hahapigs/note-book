@@ -12,6 +12,9 @@ import java.util.Set;
 
 /**
  * 实体参数校验工具类
+ *
+ * 不使用@valid的情况下，再使用封装的ValidatorUtil工具类进行参数校验
+ *
  * @author zhaohongliang
  * @description
  * @date 13:21:00 2019-03-22
@@ -28,6 +31,7 @@ public class ValidatorUtil {
         Set<ConstraintViolation<T>> constraintViolationSet = validator.validate(object, new Class[0]);
         if (constraintViolationSet.size() > 0) {
             ConstraintViolation<T> constraintViolation = constraintViolationSet.iterator().next();
+            // throw new CommonException(500, "服务器内部错误！");
             throw new CommonException();
         }
     }

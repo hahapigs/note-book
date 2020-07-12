@@ -9,6 +9,10 @@ import javax.servlet.ServletRequestListener;
 
 /**
  * 监听器
+ *
+ * Listeeshi是servlet规范中定义的一种特殊类。用于监听servletContext、HttpSession和servletRequest等域对象的创建和销毁事件。
+ * 监听域对象的属性发生修改的事件。用于在事件发生前、发生后做一些必要的处理。一般是获取在线人数等业务需求。
+ *
  * @author zhaohongliang
  * @description
  * @date 15:00:23 2019-03-20
